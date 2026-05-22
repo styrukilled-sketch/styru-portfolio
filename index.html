@@ -24,7 +24,7 @@
 
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; width: 100%; overflow: hidden; touch-action: pan-x pan-y; }
+  html, body { height: 100%; width: 100%; overflow: hidden; }
   body { font-family:'Barlow',sans-serif; background:#000; color:#fff; }
 
   /* Liquid Glass light */
@@ -513,6 +513,7 @@ function App() {
   const slideRefs = React.useRef([]);
   const videoRefs = React.useRef([]);
   const rafRef = React.useRef(null);
+  const touchStartRef = React.useRef(null);
 
   React.useEffect(() => {
     if (videoRefs.current[0]) {
@@ -595,8 +596,20 @@ function App() {
     <div
       style={{ position: 'fixed', inset: 0, overflow: 'hidden', cursor: 'pointer', touchAction: 'manipulation' }}
       onClick={handleClick}
-      onTouchEnd={(e) => { e.preventDefault(); handleClick(e); }}>
-      
+      onTouchStart={(e) => {
+        touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }}
+      onTouchEnd={(e) => {
+        if (!touchStartRef.current) return;
+        const dx = Math.abs(e.changedTouches[0].clientX - touchStartRef.current.x);
+        const dy = Math.abs(e.changedTouches[0].clientY - touchStartRef.current.y);
+        touchStartRef.current = null;
+        if (dx < 10 && dy < 10) {
+          e.preventDefault();
+          handleClick(e);
+        }
+      }}>
+
       <Navbar goTo={goTo} />
 
       {slides.map((slide, i) =>
@@ -635,7 +648,7 @@ function App() {
       {current === 0 &&
       <div className="hint-pulse" style={{ position: 'fixed', bottom: '52px', right: '36px', zIndex: 500, pointerEvents: 'none' }}>
           <span style={{ fontFamily: 'Barlow', fontSize: '11px', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
-            click to explore  →
+            tap to explore  →
           </span>
         </div>
       }
