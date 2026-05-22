@@ -23,8 +23,8 @@
 </script>
 
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { height: 100%; width: 100%; overflow: hidden; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; width: 100%; overflow: hidden; touch-action: pan-x pan-y; }
   body { font-family:'Barlow',sans-serif; background:#000; color:#fff; }
 
   /* Liquid Glass light */
@@ -172,10 +172,6 @@
 
 <script type="text/babel">
 
-
-
-
-
 const HERO_VIDEO = "https://res.cloudinary.com/dmtdqjr2w/video/upload/hf_20260519_095053_8dc85acc-9813-4ada-ac18-0706b4449618_eyji8w.mp4";
 const WORK_VIDEO = "https://res.cloudinary.com/dmtdqjr2w/video/upload/hf_20260519_095053_8dc85acc-9813-4ada-ac18-0706b4449618_eyji8w.mp4";
 
@@ -215,12 +211,10 @@ function BlurText({ text, className, stagger = 80, style, active }) {
         key={i}
         className={`blur-word${visible ? ' is-visible' : ''}`}
         style={{ transitionDelay: `${i * stagger}ms` }}>
-        
           {w}
         </span>
       )}
     </span>);
-
 }
 
 function LogoCircle() {
@@ -228,7 +222,6 @@ function LogoCircle() {
     <div className="lg-strong w-9 h-9 rounded-full flex items-center justify-center shrink-0">
       <span style={{ fontFamily: 'Instrument Serif', fontStyle: 'italic', fontSize: '18px', color: 'white', lineHeight: 1 }}>a</span>
     </div>);
-
 }
 
 const NAV = [
@@ -236,7 +229,6 @@ const NAV = [
 { label: 'About', idx: 1 },
 { label: 'Work', idx: 2 },
 { label: 'Contact', idx: 3 }];
-
 
 function Navbar({ goTo }) {
   return (
@@ -259,7 +251,6 @@ function Navbar({ goTo }) {
         </button>
       </div>
     </nav>);
-
 }
 
 function Marquee() {
@@ -280,10 +271,8 @@ function Marquee() {
         {content}
       </div>
     </div>);
-
 }
 
-/* ------------------------------- SLIDE 0: HERO ------------------------------ */
 function HeroSlide({ vidRef, active }) {
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -308,60 +297,44 @@ function HeroSlide({ vidRef, active }) {
             <BlurText text="Design that moves." stagger={120} active={active} />
           </h1>
 
-          <p className="font-body font-light text-white/75 text-lg md:text-xl mb-8 max-w-2xl">Đặng Hoàng Phong  ·  AI - Worker , Graphic Designer & Video Editor 
-
-          </p>
+          <p className="font-body font-light text-white/75 text-lg md:text-xl mb-8 max-w-2xl">Đặng Hoàng Phong  ·  AI - Worker , Graphic Designer & Video Editor</p>
         </div>
 
         <Marquee />
       </div>
     </div>);
-
 }
 
-/* ------------------------------ SLIDE 1: ABOUT ----------------------------- */
 function AboutSlide({ vidRef, active }) {
   const stats = [
   { num: '3+', label: 'Years' },
   { num: '10+', label: 'Projects' },
   { num: '5', label: 'Brands' }];
 
-
   const services = [
   { title: 'Visual Identity', desc: 'logo, color, system', glow: 'rgba(100,220,100,0.08)', ring: 'rgba(100,220,100,0.4)', idx: '01' },
   { title: 'AI-WORKER / Video Editor', desc: 'motion, reels, campaign', glow: 'rgba(180,100,255,0.08)', ring: 'rgba(180,100,255,0.4)', idx: '02' }];
-
 
   return (
     <div className="relative w-full h-full overflow-hidden" style={{ background: '#0a0a0a' }}>
       <video ref={vidRef} src={WORK_VIDEO} muted playsInline loop preload="auto"
       crossOrigin="anonymous" className="vid-fill" style={{ opacity: 0.35 }} />
       <div className="absolute inset-0" style={{ background: 'rgba(10,10,10,0.78)' }}></div>
-
-      {/* Watermark */}
       <div className="watermark absolute -top-10 -right-10 text-white">02</div>
-
-      {/* Glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(circle at 20% 80%, rgba(120,90,255,0.08), transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,120,80,0.06), transparent 45%)'
       }}></div>
 
       <div className="relative z-10 w-full h-full flex items-center px-8 md:px-16 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-[1500px] mx-auto w-full">
-          {/* LEFT */}
           <div>
             <div className="lg label-pill rounded px-3.5 py-1.5 text-white/85 inline-block mb-7">
               ✦ &nbsp;About
             </div>
-
             <h2 className="font-heading italic text-white mb-7" style={{ fontSize: 'clamp(40px, 5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
               <BlurText text="I make brands move." stagger={90} active={active} />
             </h2>
-
-            <p className="font-body font-light text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-xl">Tôi là Styru. Designer, Editor, và người dùng AI như một công cụ sáng tạo. Hơn 3 năm xây dựng visual identity cho fashion brands — nơi mỗi frame đều có chủ đích, mỗi chuyển động đều có cảm xúc.
-
-            </p>
-
+            <p className="font-body font-light text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-xl">Tôi là Styru. Designer, Editor, và người dùng AI như một công cụ sáng tạo. Hơn 3 năm xây dựng visual identity cho fashion brands — nơi mỗi frame đều có chủ đích, mỗi chuyển động đều có cảm xúc.</p>
             <div className="flex flex-wrap gap-3">
               {stats.map((s, i) =>
               <div key={i} className="lg rounded px-5 py-3 inline-flex items-baseline gap-2.5">
@@ -372,7 +345,6 @@ function AboutSlide({ vidRef, active }) {
             </div>
           </div>
 
-          {/* RIGHT */}
           <div className="grid grid-cols-2 gap-5">
             {services.map((s, i) =>
             <div key={i} className="lg lift svc-card rounded-[28px] p-7 flex flex-col justify-between relative" style={{ aspectRatio: '3/4', minHeight: '440px', borderRadius: "28px" }}>
@@ -397,15 +369,12 @@ function AboutSlide({ vidRef, active }) {
         </div>
       </div>
     </div>);
-
 }
 
-/* ------------------------------ SLIDE 2: WORK ------------------------------ */
 function WorkSlide({ vidRef, active }) {
   const projects = [
   { title: 'BRAND Identity', kind: 'Brand System', desc: 'A complete visual rebrand: logo, color palette, motion templates.', tags: ['Identity', 'Motion'], stripe: 'linear-gradient(90deg, #ff6450, #ffb290)', thumb: 'https://res.cloudinary.com/dmtdqjr2w/video/upload/kfitmp4_v1_1080p_pozhd4.mp4' },
   { title: 'AI - Worker - AI creative Visual', kind: 'VISUAL AI DIRECT', desc: 'Full visual direction for Brand fashion & more', tags: ['Fashion', 'Editorial'], stripe: 'linear-gradient(90deg, #b464ff, #e2c0ff)', thumb: 'https://res.cloudinary.com/dmtdqjr2w/video/upload/FN_j3y3l2.mp4' }];
-
 
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -418,7 +387,6 @@ function WorkSlide({ vidRef, active }) {
 
       <div className="relative z-10 w-full h-full flex flex-col justify-center px-8 md:px-16 py-24">
         <div className="max-w-[1600px] mx-auto w-full">
-          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
             <div className="max-w-2xl">
               <div className="lg label-pill rounded px-3.5 py-1.5 text-white/85 inline-block mb-5">
@@ -436,7 +404,6 @@ function WorkSlide({ vidRef, active }) {
             </div>
           </div>
 
-          {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1100px] mx-auto">
             {projects.map((p, i) =>
             <div key={i}
@@ -444,40 +411,21 @@ function WorkSlide({ vidRef, active }) {
               onMouseLeave={(e) => { const v = e.currentTarget.querySelector('video.thumb-vid'); if (v) { v.pause(); try { v.currentTime = 0; } catch(_){} } }}
               className="lg-strong lift rounded-[24px] overflow-hidden flex flex-col relative" style={{ borderRadius: '24px' }}>
                 {i === 0 &&
-              <a
-                href="https://www.behance.net/STYRUKILLED"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-no-advance
-                onClick={(e) => e.stopPropagation()}
+              <a href="https://www.behance.net/STYRUKILLED" target="_blank" rel="noopener noreferrer"
+                data-no-advance onClick={(e) => e.stopPropagation()}
                 aria-label="BRAND Identity — view on Behance"
-                className="absolute inset-0 z-20"
-                style={{ display: 'block' }} />
+                className="absolute inset-0 z-20" style={{ display: 'block' }} />
               }
                 {i === 1 &&
-              <a
-                href="https://www.instagram.com/phonchay.vn/"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-no-advance
-                onClick={(e) => e.stopPropagation()}
+              <a href="https://www.instagram.com/phonchay.vn/" target="_blank" rel="noopener noreferrer"
+                data-no-advance onClick={(e) => e.stopPropagation()}
                 aria-label="AI-Worker — view on Instagram"
-                className="absolute inset-0 z-20"
-                style={{ display: 'block' }} />
+                className="absolute inset-0 z-20" style={{ display: 'block' }} />
               }
                 <div style={{ height: '4px', background: p.stripe }}></div>
-
-                {/* Image placeholder area */}
                 <div className="relative bg-black" style={{ aspectRatio: '4/3', overflow: 'hidden' }}>
-                  <video
-                    className="thumb-vid"
-                    src={p.thumb}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'contain', background:'#000' }}
-                  />
+                  <video className="thumb-vid" src={p.thumb} muted loop playsInline preload="metadata"
+                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'contain', background:'#000' }} />
                   <div className="absolute inset-0 pointer-events-none" style={{
                   background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%)'
                 }}></div>
@@ -488,16 +436,13 @@ function WorkSlide({ vidRef, active }) {
                     visual.preview
                   </div>
                 </div>
-
                 <div className="p-5 flex flex-col gap-2.5 flex-1">
                   <div className="font-body font-light text-white/55 text-[11px] uppercase tracking-[0.2em]">{p.kind}</div>
                   <h3 className="font-heading italic text-white text-xl md:text-2xl leading-tight">{p.title}</h3>
                   <p className="font-body font-light text-white/65 text-sm leading-relaxed flex-1">{p.desc}</p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {p.tags.map((t, j) =>
-                  <span key={j} className="lg rounded px-3 py-1 text-[11px] font-body font-light text-white/80 tracking-wider">
-                        {t}
-                      </span>
+                  <span key={j} className="lg rounded px-3 py-1 text-[11px] font-body font-light text-white/80 tracking-wider">{t}</span>
                   )}
                   </div>
                 </div>
@@ -507,10 +452,8 @@ function WorkSlide({ vidRef, active }) {
         </div>
       </div>
     </div>);
-
 }
 
-/* ----------------------------- SLIDE 3: CONTACT ---------------------------- */
 function ContactSlide({ vidRef, active }) {
   const socials = ['Instagram', 'Gmail', 'Behance'];
 
@@ -519,13 +462,9 @@ function ContactSlide({ vidRef, active }) {
       <video ref={vidRef} src={HERO_VIDEO} muted playsInline loop preload="auto"
       crossOrigin="anonymous" className="vid-fill" style={{ opacity: 0.3 }} />
       <div className="absolute inset-0" style={{ background: 'rgba(5,5,5,0.78)' }}></div>
-
-      {/* Cosmic glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(circle at 50% 60%, rgba(120,90,255,0.12), transparent 55%), radial-gradient(circle at 50% 100%, rgba(255,120,80,0.06), transparent 60%)'
       }}></div>
-
-      {/* Watermark */}
       <div className="watermark absolute -bottom-20 -left-10 text-white">04</div>
 
       <div className="relative z-10 w-full h-full flex flex-col">
@@ -533,23 +472,15 @@ function ContactSlide({ vidRef, active }) {
           <div className="lg label-pill rounded px-3.5 py-1.5 text-white/85 inline-block mb-8">
             ✦ &nbsp;Let's work together
           </div>
-
           <h2 className="contact-title text-white mb-6">
             <BlurText text="Got a project?" stagger={120} active={active} />
           </h2>
-
-          <p className="font-body font-light text-white/65 text-lg md:text-xl mb-10 max-w-xl">DROP A MESSENGE
-
-          </p>
-
+          <p className="font-body font-light text-white/65 text-lg md:text-xl mb-10 max-w-xl">DROP A MESSENGE</p>
           <div data-no-advance onClick={(e) => e.stopPropagation()} className="mb-12">
-            <a href="mailto:hello@styru.design"
+            <a href="mailto:Styrukilled@gmail.com"
             className="email-link font-heading italic text-white"
-            style={{ fontSize: 'clamp(36px, 5.5vw, 72px)', lineHeight: 1.1 }}>Styrukilled@gmail.com
-
-            </a>
+            style={{ fontSize: 'clamp(36px, 5.5vw, 72px)', lineHeight: 1.1 }}>Styrukilled@gmail.com</a>
           </div>
-
           <div data-no-advance onClick={(e) => e.stopPropagation()} className="flex flex-wrap items-center justify-center gap-3 mb-2">
             {socials.map((s) =>
             <a key={s} href="#"
@@ -560,8 +491,6 @@ function ContactSlide({ vidRef, active }) {
             )}
           </div>
         </div>
-
-        {/* Footer */}
         <div className="border-t border-white/10 px-8 md:px-16 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-body font-light text-white/45">
           <div>© 2025 Đặng Hoàng Phong (Styru) · Made with love & caffeine</div>
           <div className="flex items-center gap-4">
@@ -572,10 +501,8 @@ function ContactSlide({ vidRef, active }) {
         </div>
       </div>
     </div>);
-
 }
 
-/* ---------------------------------- APP ----------------------------------- */
 const TOTAL = 4;
 const SLIDE_LABELS = ['Home', 'About', 'Work', 'Contact'];
 
@@ -587,7 +514,6 @@ function App() {
   const videoRefs = React.useRef([]);
   const rafRef = React.useRef(null);
 
-  // On mount: play first video
   React.useEffect(() => {
     if (videoRefs.current[0]) {
       videoRefs.current[0].currentTime = 0;
@@ -619,8 +545,7 @@ function App() {
       const e = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
       fromEl.style.opacity = String(1 - e);
       toEl.style.opacity = String(e);
-      if (p < 1) {rafRef.current = requestAnimationFrame(tick);} else
-      {
+      if (p < 1) {rafRef.current = requestAnimationFrame(tick);} else {
         fromEl.style.opacity = '0';
         toEl.style.opacity = '1';
         const prevVid = videoRefs.current[fromIdx];
@@ -641,7 +566,6 @@ function App() {
     advance();
   }
 
-  // Keyboard navigation
   React.useEffect(() => {
     function onKey(e) {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
@@ -667,11 +591,11 @@ function App() {
   <WorkSlide vidRef={(el) => videoRefs.current[2] = el} active={current === 2} />,
   <ContactSlide vidRef={(el) => videoRefs.current[3] = el} active={current === 3} />];
 
-
   return (
     <div
-      style={{ position: 'fixed', inset: 0, overflow: 'hidden', cursor: 'pointer' }}
-      onClick={handleClick}>
+      style={{ position: 'fixed', inset: 0, overflow: 'hidden', cursor: 'pointer', touchAction: 'manipulation' }}
+      onClick={handleClick}
+      onTouchEnd={(e) => { e.preventDefault(); handleClick(e); }}>
       
       <Navbar goTo={goTo} />
 
@@ -689,7 +613,6 @@ function App() {
         </div>
       )}
 
-      {/* Slide counter top-left */}
       <div data-no-advance style={{ position: 'fixed', top: '24px', left: '28px', zIndex: 250, pointerEvents: 'none' }}>
         <div className="lg rounded px-3 py-1.5 inline-flex items-baseline gap-2">
           <span className="font-heading italic text-white text-lg leading-none">{String(current + 1).padStart(2, '0')}</span>
@@ -697,7 +620,6 @@ function App() {
         </div>
       </div>
 
-      {/* Progress dots */}
       <div style={{ position: 'fixed', bottom: '28px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px', zIndex: 500, pointerEvents: 'none' }}>
         {Array.from({ length: TOTAL }).map((_, i) =>
         <div key={i} style={{
@@ -710,7 +632,6 @@ function App() {
         )}
       </div>
 
-      {/* Click-to-explore hint, only on slide 0 */}
       {current === 0 &&
       <div className="hint-pulse" style={{ position: 'fixed', bottom: '52px', right: '36px', zIndex: 500, pointerEvents: 'none' }}>
           <span style={{ fontFamily: 'Barlow', fontSize: '11px', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
@@ -719,7 +640,6 @@ function App() {
         </div>
       }
     </div>);
-
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
